@@ -1,0 +1,4 @@
+python==312.3
+kafka-python==2.0.3
+pyspark==3.5.4
+requests==2.32.3
