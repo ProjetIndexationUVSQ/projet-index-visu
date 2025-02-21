@@ -1,0 +1,41 @@
+{
+	"settings": {
+		"analysis": {
+			"filter": {
+				"ngram_filter": {
+					"type": "edge_ngram",
+					"min_gram": 2,
+					"max_gram": 60
+				}
+			},
+			"analyzer": {
+				"ngram_analyzer": {
+					"filter": ["lowercase", "ngram_filter"],
+					"type": "custom",
+					"tokenizer": "standard"
+				}
+			}
+		}
+	},
+	"mappings": {
+		"properties": {
+			"type": {"type": "keyword"},
+			"ns": {"type": "integer"},
+			"title": {
+				"type": "text",
+				"fields": {
+					"prefix": {
+						"type": "text",
+						"analyzer": "ngram_analyzer"
+					},
+					"raw": {
+						"type": "keyword"
+					}
+				}
+			},
+			"user": {"type": "keyword"},
+			"timestamp": {"type": "date"},
+			"comment": {"type": "text"}
+		}
+	}
+}
